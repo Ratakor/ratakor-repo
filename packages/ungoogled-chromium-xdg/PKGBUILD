@@ -50,8 +50,7 @@ source=(https://commondatastorage.googleapis.com/chromium-browser-official/chrom
         disable-GlobalMediaControlsCastStartStop.patch
         sql-relax-constraints-on-VirtualCursor-layout.patch
         xdg-basedir.patch
-        no-omnibox-suggestion-autocomplete.patch
-        index.html)
+        no-omnibox-suggestion-autocomplete.patch)
 sha256sums=('ddfd37373c1fa0f433a6ac11f0baa2b1f3fdfb9c7b5867e32a4300f2eb5aff41'
             '9048669535558d2a6cd264539c6588d0218ba2b12950d3ed057ef3ec5fee1baa'
             '213e50f48b67feb4441078d50b0fd431df34323be15be97c55302d3fdac4483a'
@@ -61,8 +60,7 @@ sha256sums=('ddfd37373c1fa0f433a6ac11f0baa2b1f3fdfb9c7b5867e32a4300f2eb5aff41'
             '7f3b1b22d6a271431c1f9fc92b6eb49c6d80b8b3f868bdee07a6a1a16630a302'
             'e66be069d932fe18811e789c57b96249b7250257ff91a3d82d15e2a7283891b7'
             'ea1402e2828cf1e7e963fcaa769e855bceafa4b5114d3363f4d014871cbf688e'
-            '08ba2d16b7068ef678f059f7ed7cce7f48394ad5dff69dc7c397a86d37775dee'
-            '0dcbef4e683fe4899e68de396eb560ed07aed6aed5c2bab2659e201635a3012b')
+            '08ba2d16b7068ef678f059f7ed7cce7f48394ad5dff69dc7c397a86d37775dee')
 
 # Possible replacements are listed in build/linux/unbundle/replace_gn_files.py
 # Keys are the names in the above script; values are the dependencies in Arch
@@ -331,7 +329,6 @@ package() {
   done
 
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/chromium/LICENSE"
-  install -Dm644 "${srcdir}/index.html" "$pkgdir/usr/share/ungoogled-chromium/index.html"
 }
 
 # vim:set ts=2 sw=2 et:

@@ -31,7 +31,7 @@ if pacman -Qqdt 1>/dev/null; then
 	"$ROOTCMD" pacman -Rns $(pacman -Qqdt)
 fi
 
-gitui
+gitui # review changes
 
 printf "Do you want to push ? (y/N) "
 read -r ANSWER
