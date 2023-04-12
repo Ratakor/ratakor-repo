@@ -4,15 +4,15 @@ REPO=ratakor-repo
 PKG=${*:-$(ls packages)}
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 
-#for pkg in $PKG; do
-#	rm -f "x86_64/$pkg"*
-#	(cd "packages/$pkg" &&
-#		rm -f ./*.pkg.tar.zst ./*.pkg.tar.zst.sig
-#		makepkg -scf --sign)
-#done
-#
-#cp -f packages/*/*.pkg.tar.zst x86_64/
-#cp -f packages/*/*.pkg.tar.zst.sig x86_64/
+for pkg in $PKG; do
+	rm -f "x86_64/$pkg"*
+	(cd "packages/$pkg" &&
+		rm -f ./*.pkg.tar.zst ./*.pkg.tar.zst.sig
+		makepkg -scf --sign)
+done
+
+cp -f packages/*/*.pkg.tar.zst x86_64/
+cp -f packages/*/*.pkg.tar.zst.sig x86_64/
 rm -f x86_64/$REPO.db* x86_64/$REPO.files*
 repo-add -s -v x86_64/$REPO.db.tar.gz x86_64/*.pkg.tar.zst
 unlink x86_64/$REPO.db
@@ -30,6 +30,8 @@ if pacman -Qqdt 1>/dev/null; then
 	# shellcheck disable=SC2046
 	"$ROOTCMD" pacman -Rns $(pacman -Qqdt)
 fi
+
+gitui
 
 printf "Do you want to push ? (y/N) "
 read -r ANSWER

@@ -1,6 +1,6 @@
 # Ratakor Arch repository
 
-Last updated: Wed, 12 Apr 2023 13:42:24 +0200
+Last updated: Wed, 12 Apr 2023 15:27:18 +0200
 
 ## Setup
 ```

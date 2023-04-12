@@ -3,7 +3,7 @@
 
 grep -q "ratakor-repo" /etc/pacman.conf || printf "
 [ratakor-repo]
-SigLevel = Required DatabaseOptional
+SigLevel = Required
 Server = https://raw.githubusercontent.com/ratakor/\$repo/master/\$arch
 Server = https://git.ratakor.com/\$repo.git/plain/\$arch\n" >> /etc/pacman.conf
 
