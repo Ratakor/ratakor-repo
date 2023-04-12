@@ -1,0 +1,29 @@
+notice()
+{
+  cat <<EOF
+  The 'your-privacy' package detects other packages on your system,
+  which are known to support privacy-unsafe protocols/services,
+  and protects you from (accidentally) installing those in the future.
+
+  Also, as any other such packages are identified in the future,
+  an updated 'your-privacy' package will prompt you for their removal.
+
+  Your feedback/participation is important. It is _your_ privacy, after all.
+  If you notice any problems caused by this package, or notice some package
+  which does or does not deserve to be guarded, please do start a discussion.
+
+  * Bugs:  https://labs.parabola.nu
+  * Forum: https://forum.parabola.nu
+  * Email: mailto:assist@lists.parabola.nu
+  * Chat:  ircs://irc.libera.chat/#parabola
+
+  This is a modified version made by Ratakor <ratakor@disroot.org>.
+EOF
+}
+
+pre_install() { notice ; }
+pre_upgrade() { notice ; }
+
+post_remove() {
+	/usr/bin/chmod a+x /usr/bin/archlinux-keyring-wkd-sync
+}

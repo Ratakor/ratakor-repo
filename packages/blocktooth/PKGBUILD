@@ -1,0 +1,17 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=blocktooth
+pkgver=0.1
+pkgrel=2
+pkgdesc="Block bluetooth with rfkill"
+arch=('any')
+license=('GPL')
+depends=('openrc' 'rfkill')
+install=$pkgname.install
+source=("$pkgname-openrc")
+sha256sums=('494ceb34756189897af922022e35b62317245decf8b89098b5bff2e4f308c8b6')
+
+package() {
+	cd "$srcdir"
+	install -Dm755 "${pkgname}-openrc" "${pkgdir}/etc/init.d/${pkgname}"
+}

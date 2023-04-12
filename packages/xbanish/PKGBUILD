@@ -1,0 +1,22 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+# Contributor: Chris Down <chris@chrisdown.name>
+
+pkgname=xbanish
+pkgver=1.8.r4.g189ce79
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc='Hide the mouse cursor when typing'
+url="https://github.com/jcs/$pkgname"
+arch=('x86_64')
+license=('BSD')
+depends=('libxfixes' 'libxi')
+makedepends=('libxt')
+source=("git+$url")
+sha256sums=('SKIP')
+
+package() {
+	cd "$srcdir/$pkgname"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}

@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: CC0-1.0
+# Author: Parabola Hackers <dev@lists.parabola.nu>
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=your-freedom
+pkgver=20230411
+pkgver() { date '+%Y%m%d'; }
+pkgrel=1
+pkgdesc="This meta-package conflicts with every (but chromium) known non-free Arch package, to ensure that your system is libre"
+arch=(any)
+url=https://wiki.parabola.nu/Blacklist
+license=(GPL3)
+makedepends=(librelib)
+install=${pkgname}.install
+source=(blacklist.txt::https://git.parabola.nu/blacklist.git/plain/blacklist.txt)
+sha256sums=('bfaa1a6e15a20d88796c56288430da027561d0ab6c3a4c638e20d318ea39d748')
+
+package()
+{
+	# remove chromium from the blacklist
+	sed -i 's/^chromium.*//' blacklist.txt
+
+	# collect blacklisted package names as pacman conflicts,
+	# also to be excluded by the repo importer, and rejected by libremakepkg
+	conflicts=( $( libreblacklist normalize < blacklist.txt | \
+	               cut -d: -f1,2 | sed -n 's/:$//p' | sort -u                     ) )
+
+	install -Dm644 blacklist.txt "${pkgdir}"/usr/share/doc/${pkgname}/blacklist.txt
+}

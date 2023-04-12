@@ -1,0 +1,11 @@
+#!/bin/sh
+# add ratakor-repo to pacman.conf
+
+grep -q "ratakor-repo" /etc/pacman.conf || printf "
+[ratakor-repo]
+SigLevel = Required DatabaseOptional
+Server = https://raw.githubusercontent.com/ratakor/\$repo/master/\$arch
+Server = https://git.ratakor.com/\$repo.git/plain/\$arch\n" >> /etc/pacman.conf
+
+curl -s "https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/ratakor.pgp" | pacman-key --add -
+pacman-key --lsign 241B1CBE567B287E

@@ -1,0 +1,29 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=pinentry-dmenu
+pkgver=r51.51c595a
+pkgrel=1
+pkgdesc="pinentry program based on dmenu"
+arch=('x86_64')
+url="https://github.com/mrdotx/$pkgname"
+license=('GPL')
+depends=('libx11' 'libxft' 'libxinerama' 'freetype2')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url" 'config.h')
+sha256sums=('SKIP'
+            '924ee70b2e039f650572577fc90dc267f8c4adae3c0c4b98cd04825a8e561a4b')
+
+pkgver() {
+	cd "$pkgname"
+	printf 'r%s.%s' \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+	cp config.h "$srcdir/$pkgname"
+	cd "$srcdir/$pkgname"
+	install -Dm644 LICENSE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}

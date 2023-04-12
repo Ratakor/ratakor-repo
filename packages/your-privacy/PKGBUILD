@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: CC0-1.0
+# Author: Parabola Hackers <dev@lists.parabola.nu>
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=your-privacy
+pkgver=20230411
+pkgver() { date '+%Y%m%d'; }
+pkgrel=1
+pkgdesc="This package will remove support for protocols and services known to endanger privacy."
+arch=(any)
+url=https://wiki.parabola.nu/Blacklist
+license=(GPL3)
+makedepends=(librelib)
+install=${pkgname}.install
+source=(blacklist.txt::https://git.parabola.nu/blacklist.git/plain/${pkgname}-blacklist.txt 'archlinux-keyring.hook')
+sha256sums=('a2cb94d6343def400dddd3860d899b3367a37cb17489d7a48ba33477ce850252'
+            '7991c89ae4978c069a95fead275387742faa98fad77da721f4b9e17c8e5ead0d')
+
+package()
+{
+	# collect blacklisted package names as pacman conflicts
+	conflicts=( $( libreblacklist normalize < blacklist.txt | \
+	               cut -d: -f1,2                                       | \
+	               sed -n 's/:$//p'                                    | \
+	               sort -u                                             ) )
+
+	install -Dm644 blacklist.txt "${pkgdir}"/usr/share/doc/${pkgname}/blacklist.txt
+
+	# disable automatic archlinux-keyring refresh
+	install -Dm644 archlinux-keyring.hook "${pkgdir}"/usr/share/libalpm/hooks/archlinux-keyring.hook
+}

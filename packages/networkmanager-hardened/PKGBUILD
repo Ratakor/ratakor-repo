@@ -1,0 +1,18 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname="networkmanager-hardened"
+pkgver=0.1
+pkgrel=1
+pkgdesc="Enables MAC randomization on all interfaces and disable connectviity check."
+arch=(any)
+license=(GPL)
+depends=('networkmanager')
+conflicts=('networkmanager-hardened-configs')
+source=('30-macrandomize.conf' '20-connectivity.conf')
+sha256sums=('59ee4b9248843969b6f76024bae586d3c028a7dcc587fbc893a80bf347ab8665'
+            '0636005a5bca74217a24cc645cc803e210a5555d505f4d157f8200a3f3a5a034')
+
+package() {
+	install -Dm644 20-connectivity.conf "$pkgdir"/etc/NetworkManager/conf.d/20-connectivity.conf
+	install -Dm644 30-macrandomize.conf "$pkgdir"/etc/NetworkManager/conf.d/30-macrandomize.conf
+}

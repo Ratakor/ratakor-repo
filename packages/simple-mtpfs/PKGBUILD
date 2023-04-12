@@ -1,0 +1,28 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=simple-mtpfs
+pkgver=0.4.0
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc='Simple MTP fuse filesystem driver'
+arch=('x86_64')
+url="https://github.com/phatina/$pkgname"
+license=('GPL2')
+makedepends=('autoconf-archive')
+depends=('libmtp' 'fuse' 'gcc-libs')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url")
+sha256sums=('SKIP')
+
+build() {
+	cd "$srcdir/$pkgname"
+	./autogen.sh
+	./configure --prefix='/usr'
+	make
+}
+
+package() {
+	cd "$srcdir/$pkgname"
+	make DESTDIR="$pkgdir" install
+}

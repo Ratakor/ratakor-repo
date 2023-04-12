@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type      = Package
+Target    = *
+
+[Action]
+Description = disable automatic archlinux-keyring refresh
+Depends     = archlinux-keyring
+When        = PostTransaction
+Exec        = /usr/bin/chmod a-x /usr/bin/archlinux-keyring-wkd-sync

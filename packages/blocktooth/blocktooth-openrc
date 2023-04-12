@@ -1,0 +1,15 @@
+#!/usr/bin/openrc-run
+
+description="Block bluetooth with rfkill"
+
+start() {
+    ebegin "Blocking bluetooth"
+    rfkill block bluetooth
+    eend $? "Failed to block bluetooth"
+}
+
+stop() {
+    ebegin "Unblocking bluetooth"
+    rfkill unblock bluetooth
+    eend $? "Failed to unblock bluetooth"
+}
