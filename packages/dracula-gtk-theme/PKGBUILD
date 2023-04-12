@@ -12,7 +12,7 @@ license=('GPL')
 optdepends=('ttf-roboto: primary font face defined'
 	'ttf-ubuntu-font-family: secondary font face defined'
 	'cantarell-fonts: tertiary font face defined')
-source=("$pkgname-$pkgver.tar.gz::$url/releases/download/$pkgver/Dracula.tar.xz")
+source=("$pkgname-$pkgver.tar.xz::$url/releases/download/$pkgver/Dracula.tar.xz")
 sha256sums=('199bd4051b243fddadc625038686c7e8a91d4e8098868aadb4ca4c0c80911b6f')
 provides=($pkgname)
 conflicts=($pkgname)

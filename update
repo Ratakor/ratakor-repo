@@ -40,7 +40,7 @@ case $ANSWER in
 		git add .
 		git commit -m "update"
 		git push
-		cp ./* ../ratakor-repo-github/
+		cp -rf ./* ../ratakor-repo-github/
 		(cd ../ratakor-repo-github || exit 1
 		git add .
 		git commit -m "update"
