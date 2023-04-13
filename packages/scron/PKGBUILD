@@ -1,8 +1,9 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=scron
-pkgver=r3.0930296
-pkgrel=2
+pkgver=0.4.r2.g1aef3b5
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
 pkgdesc="Simple cron daemon"
 arch=('x86_64')
 url="https://github.com/ratakor/$pkgname"
@@ -11,12 +12,6 @@ provides=("$pkgname")
 conflicts=("$pkgname")
 source=("git+$url")
 sha256sums=('SKIP')
-
-pkgver() {
-	cd "$_pkgname"
-	printf 'r%s.%s' \
-		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
 
 package() {
 	cd "$srcdir/$pkgname"
