@@ -15,8 +15,8 @@
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
 pkgname=ungoogled-chromium-xdg
-pkgver=112.0.5615.49
-pkgrel=2
+pkgver=112.0.5615.50
+pkgrel=1
 _launcher_ver=8
 #_gcc_patchset=2
 _uc_usr=ungoogled-software
@@ -51,8 +51,8 @@ source=(https://commondatastorage.googleapis.com/chromium-browser-official/chrom
         sql-relax-constraints-on-VirtualCursor-layout.patch
         xdg-basedir.patch
         no-omnibox-suggestion-autocomplete.patch)
-sha256sums=('ddfd37373c1fa0f433a6ac11f0baa2b1f3fdfb9c7b5867e32a4300f2eb5aff41'
-            '9048669535558d2a6cd264539c6588d0218ba2b12950d3ed057ef3ec5fee1baa'
+sha256sums=('1241d4950ce570d90d616ddaf65acd9e076c870df4182c2256625d76be30dd00'
+            '06e2ed29d378b4957a421d2b1af18d4280de8f3fc8f6b21ef6ccdb3d89aca534'
             '213e50f48b67feb4441078d50b0fd431df34323be15be97c55302d3fdac4483a'
             'babda4f5c1179825797496898d77334ac067149cac03d797ab27ac69671a7feb'
             'e393174d7695d0bafed69e868c5fbfecf07aa6969f3b64596d0bae8b067e1711'
@@ -183,33 +183,52 @@ build() {
   export AR=ar
   export NM=nm
 
+  # ugnoogled-chromium/flags.gn
+  #  'build_with_tflite_lib=false'
+  #  'chrome_pgo_phase=0' # needs newer clang to read the bundled PGO profile
+  #  'clang_use_chrome_plugins=false'
+  #  'disable_fieldtrial_testing_config=true'
+  #  'enable_hangout_services_extension=false' # screensharing in google meet
+  #  'enable_mdns=false'
+  #  'enable_mse_mpeg2ts_stream_parser=true'
+  #  'enable_nacl=false' # Disable Native Client to speed up build process
+  #  'enable_reading_list=false'
+  #  'enable_remoting=false'
+  #  'enable_reporting=false'
+  #  'enable_service_discovery=false'
+  #  'enable_widevine=true' # put to false
+  #  'exclude_unwind_tables=true'
+  #  'google_api_key=""'
+  #  'google_default_client_id=""'
+  #  'google_default_client_secret=""'
+  #  'safe_browsing_mode=0'
+  #  'treat_warnings_as_errors=false'
+  #  'use_official_google_api_keys=false'
+  #  'use_unofficial_version_number=false'
+
   local _flags=(
     'custom_toolchain="//build/toolchain/linux/unbundle:default"'
     'host_toolchain="//build/toolchain/linux/unbundle:default"'
     'clang_base_path="/usr"'
-    'clang_use_chrome_plugins=false'
+    'is_debug=false'
     'is_official_build=true' # implies is_cfi=true on x86_64
     'symbol_level=0' # sufficient for backtraces on x86(_64)
-    'chrome_pgo_phase=0' # needs newer clang to read the bundled PGO profile
-    'treat_warnings_as_errors=false'
-    'disable_fieldtrial_testing_config=true'
     'blink_enable_generated_code_formatting=false'
     'ffmpeg_branding="Chrome"'
     'proprietary_codecs=true'
     'rtc_use_pipewire=true'
     'link_pulseaudio=true'
     'use_custom_libcxx=false'
-    'use_gnome_keyring=false'
+    'use_gnome_keyring=false' # deprecated by libsecret
     'use_sysroot=false'
     'use_system_libffi=true'
-    'enable_hangout_services_extension=true' # screensharing in google meet
-    'enable_widevine=true'
-    'enable_nacl=false' # Disable Native Client to speed up build process
     #"google_api_key=\" AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM\""
     'enable_platform_hevc=true'
     'enable_hevc_parser_and_hw_decoder=true'
-    #'use_custom_libcxx=false'
-    #'use_vaapi=true' # enable videa acceleration ig
+    #'use_vaapi=true' # enable video acceleration
+    'enable_widevine=false' # remove DRM, overriding default flag
+    'goma_dir=""'
+    'enable_vr=false'
   )
 
   if [[ -n ${_system_libs[icu]+set} ]]; then

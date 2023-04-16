@@ -1,0 +1,9 @@
+#!/bin/sh
+
+pkgver=$(curl -s "https://raw.githubusercontent.com/ungoogled-software/ungoogled-chromium/master/chromium_version.txt")
+
+sed -i "s/^pkgver.*/pkgver=$pkgver/" PKGBUILD
+
+git clone https://github.com/archlinux/svntogit-packages.git --branch packages/chromium --single-branch chr
+mv -f chr/trunk/*.patch .
+rm -rf chr

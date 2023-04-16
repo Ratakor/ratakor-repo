@@ -1,15 +1,20 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=dwm-gaps-ratakor
-_pkgname="${pkgname%-gaps-ratakor}"
-pkgver=r41.361943f
+_pkgname="${pkgname%%-*}"
+pkgver=r44.7361aca
 pkgrel=1
 pkgdesc="Ratakor's build of dwm but with gaps"
 arch=('x86_64')
 url="https://github.com/ratakor/$_pkgname/tree/gaps"
 license=('MIT')
 depends=('libx11' 'libxft' 'libxinerama' 'freetype2')
-optdepends=('dwmblocks-ratakor: status bar' 'st-ratakor: terminal' 'dmenu-ratakor: application launcher' )
+optdepends=('dwmblocks-ratakor: status bar'
+            'st-ratakor: terminal emulator'
+            'dmenu-ratakor: application launcher'
+            'picom: compositor for transparency'
+            'xorg-xrdb: Xresource for setting theme'
+            'sxhkd: hotkey daemon (there is no default binding for spawning st or dmenu)')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 source=("git+${url%/tree/gaps}#branch=gaps")

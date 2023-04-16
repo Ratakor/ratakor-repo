@@ -40,9 +40,10 @@ case $ANSWER in
 		git add .
 		git commit -m "update"
 		git push
-		cp -rf ./* ../ratakor-repo-github/
-		(cd ../ratakor-repo-github || exit 1
-		git add .
-		git commit -m "update"
-		git push);;
+		#rm -rf ../ratakor-repo-github/x86_64/
+		#cp -rf ./* ../ratakor-repo-github/
+		#(cd ../ratakor-repo-github || exit 1
+		#git add .
+		#git commit -m "update"
+		#git push) ;;
 esac
