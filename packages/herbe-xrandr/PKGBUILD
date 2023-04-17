@@ -1,0 +1,29 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=herbe-xrandr
+_pkgname=${pkgname%-*}
+pkgver=1.0.0.r10.gdec89e4
+pkgver() { git -C "$_pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc="Daemon-less notifications with xrandr primary monitor support"
+arch=('x86_64')
+url="https://github.com/dudik/$_pkgname"
+license=('MIT')
+depends=('libx11' 'libxft' 'freetype2' 'xorg-xrandr')
+provides=("$_pkgname" "libnotify")
+conflicts=("$_pkgname" "libnotify")
+source=("git+$url" "herbe-xrandr.diff")
+sha256sums=('SKIP'
+            '1c0127d828d4a2b954cbedc635766f7e3cefd4651997046c4f4be2d082bbb354')
+
+prepare() {
+	cd "$srcdir/$_pkgname"
+	patch -p1 -i ../herbe-xrandr.diff
+}
+
+package() {
+	cd "$srcdir/$_pkgname"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
