@@ -2,7 +2,7 @@
 
 pkgname=st-ratakor
 _pkgname="${pkgname%-ratakor}"
-pkgver=r16.0ed38f5
+pkgver=r17.4fa16e8
 pkgrel=1
 pkgdesc="Ratakor's build of st"
 arch=('x86_64')
