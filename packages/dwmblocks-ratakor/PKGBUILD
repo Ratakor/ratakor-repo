@@ -3,12 +3,12 @@
 pkgname=dwmblocks-ratakor
 _pkgname="${pkgname%-ratakor}"
 pkgver=r57.1e7b3a2
-pkgrel=1
+pkgrel=2
 pkgdesc="Ratakor's build of dwmblocks"
 arch=('x86_64')
 url="https://github.com/ratakor/$_pkgname"
 license=('ISC')
-depends=('libx11')
+depends=('libx11' 'libconfig')
 optdepends=('dwm-ratakor: window manager')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
