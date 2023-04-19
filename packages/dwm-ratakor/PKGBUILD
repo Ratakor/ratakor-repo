@@ -2,7 +2,7 @@
 
 pkgname=dwm-ratakor
 _pkgname="${pkgname%-ratakor}"
-pkgver=r45.299526e
+pkgver=r47.441407b
 pkgrel=1
 pkgdesc="Ratakor's build of dwm"
 arch=('x86_64')

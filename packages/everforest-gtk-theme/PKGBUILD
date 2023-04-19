@@ -1,0 +1,24 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=everforest-gtk-theme
+pkgver=r13.f7a4bfc
+pkgrel=1
+pkgdesc="Everforest theme for GTK"
+arch=("any")
+url="https://github.com/Fausto-Korpsvart/Everforest-GTK-Theme"
+license=('GPL3')
+provides=($pkgname)
+conflicts=($pkgname)
+source=("git+$url")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$_pkgname"
+	printf 'r%s.%s' \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+	install -d "$pkgdir/usr/share/themes/everforest"
+	cp -r "$srcdir/Everforest-GTK-Theme/themes/Everforest-Dark-BL/"* "$pkgdir/usr/share/themes/everforest"
+}

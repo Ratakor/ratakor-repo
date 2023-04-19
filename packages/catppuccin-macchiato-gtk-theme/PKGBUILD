@@ -1,0 +1,16 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=catppuccin-macchiato-gtk-theme
+pkgver=0.5.0
+pkgrel=1
+pkgdesc="Catppuccin GTK theme, with Macchiato flavour and Peach accent"
+arch=(any)
+url="https://github.com/catppuccin/gtk"
+license=('GPL3')
+source=("$url/releases/download/v$pkgver/Catppuccin-Macchiato-Standard-Peach-Dark.zip")
+sha256sums=('1371d2f33adf976ed36d8236eb85ac961a45ce3b97fcd4d653ca2cff95eee555')
+
+package() {
+	install -d "$pkgdir/usr/share/themes/catppuccin"
+	cp -r "${srcdir}/Catppuccin-Macchiato-Standard-Peach-Dark/"* "$pkgdir/usr/share/themes/catppuccin"
+}

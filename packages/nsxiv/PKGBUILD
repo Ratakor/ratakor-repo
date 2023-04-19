@@ -4,7 +4,7 @@
 
 pkgname=nsxiv
 pkgver=31
-pkgrel=2
+pkgrel=3
 pkgdesc='Neo (or New or Not) Simple (or Small or Suckless) X Image Viewer'
 arch=('x86_64')
 license=('GPL2')
@@ -17,18 +17,15 @@ depends=('imlib2' 'libx11'                 # core dependencies
          'hicolor-icon-theme')             # make icon
 source=("$pkgname-$pkgver.tar.gz"::"https://codeberg.org/nsxiv/nsxiv/archive/v$pkgver.tar.gz"
         "_nsxiv"
-        "image-mode-cycle-v30.diff"
-        "animate-by-default-v31.patch")
+        "image-mode-cycle-v30.diff")
 sha256sums=('035fbb3fb3ffec45555afd718947ec8a7d7dfac3c5abc7ba6863cc075720d7f2'
             '97f1bea59589f0fc45934d757ab162f63d91042a79ae8f37130e488693c44d9e'
-            'a6734baffe9eaf5cc4be51d64a88d6e4336751f1723a1a04635e22a02c313d79'
-            'ea5c97264313ed29d836146ca1b70b5e7197fc087cfd4918b793ae072d7ea958')
+            'a6734baffe9eaf5cc4be51d64a88d6e4336751f1723a1a04635e22a02c313d79')
 
 prepare() {
 	cd "$pkgname"
 	sed -i -e 's/^CC.*/CC = cc/' -e 's/^CFLAGS.*/CFLAGS += -std=c99 -Wall -pedantic/' config.mk
 	patch -i ../image-mode-cycle-v30.diff
-	patch -i ../animate-by-default-v31.patch
 }
 
 package() {

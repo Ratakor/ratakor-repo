@@ -1,7 +1,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=pinentry-dmenu
-pkgver=r54.76d4001
+pkgver=r55.e5f2a7a
 pkgrel=1
 pkgdesc="pinentry program based on dmenu"
 arch=('x86_64')

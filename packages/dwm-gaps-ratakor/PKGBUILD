@@ -2,7 +2,7 @@
 
 pkgname=dwm-gaps-ratakor
 _pkgname="${pkgname%%-*}"
-pkgver=r44.7361aca
+pkgver=r46.7528e77
 pkgrel=1
 pkgdesc="Ratakor's build of dwm but with gaps"
 arch=('x86_64')
