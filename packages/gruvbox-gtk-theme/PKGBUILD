@@ -1,17 +1,31 @@
-# Maintainer: Safwan Ljd <eljadisafwan@gmail.com>
+# Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=gruvbox-gtk-theme
-pkgver=1.0
+_pkgname=Gruvbox-GTK-Theme
+pkgver=r46.44e81d82
 pkgrel=2
-pkgdesc="An Elegant Dark Gruvbox GTK Theme, With a Green Accent"
+pkgdesc="A GTK theme based on the Gruvbox colour palette"
 arch=(any)
-url="https://gitlab.com/SafwanLjd/BetterGruvbox"
+url="https://github.com/Fausto-Korpsvart/$_pkgname"
 license=('GPL3')
 depends=('gtk-engine-murrine')
-source=("https://gitlab.com/SafwanLjd/BetterGruvbox/-/archive/v$pkgver/BetterGruvbox-v$pkgver.tar.gz")
-sha1sums=('2e6908b70295127313dba3b16e23b48bcbf97b42')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$_pkgname"
+	printf 'r%s.%s' \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
 
 package() {
-	install -d "$pkgdir/usr/share/themes/gruvbox"
-	cp -r "${srcdir}/BetterGruvbox-v$pkgver/"* "$pkgdir/usr/share/themes/gruvbox"
+	install -d "$pkgdir/usr/share/themes/${pkgname%%-*}-dark"
+	install -d "$pkgdir/usr/share/themes/${pkgname%%-*}-light"
+	cd "$srcdir/$_pkgname"
+	cp -r themes/Gruvbox-Dark-BL/* "$pkgdir/usr/share/themes/${pkgname%%-*}-dark"
+	cp -r themes/Gruvbox-Light-BL/* "$pkgdir/usr/share/themes/${pkgname%%-*}-light"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
 }

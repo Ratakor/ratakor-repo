@@ -1,7 +1,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=quand
-pkgver=0.4.r2.g1670321
+pkgver=0.4.r3.gebe54af
 pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
 pkgrel=1
 pkgdesc="A simple calendar written in POSIX sh"
