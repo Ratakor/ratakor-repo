@@ -5,6 +5,8 @@ PKG=${*:-$(ls packages)}
 ROOTCMD="${ROOTCMD:-$(command -v doas || command -v sudo)}"
 
 for pkg in $PKG; do
+	[ "$pkg" = "ungoogled-chromium-xdg" ] && continue
+
 	rm -f "x86_64/$pkg"*.pkg.tar.zst
 	(cd "packages/$pkg" || exit 1
 		rm -f ./*.pkg.tar.zst ./*.pkg.tar.zst.sig

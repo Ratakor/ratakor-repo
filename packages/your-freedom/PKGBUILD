@@ -3,7 +3,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=your-freedom
-pkgver=20230411
+pkgver=20230514
 pkgver() { date '+%Y%m%d'; }
 pkgrel=1
 pkgdesc="This meta-package conflicts with every (but chromium) known non-free Arch package, to ensure that your system is libre"
