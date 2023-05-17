@@ -2,8 +2,8 @@
 
 pkgname=dwmblocks-ratakor
 _pkgname="${pkgname%-ratakor}"
-pkgver=r57.1e7b3a2
-pkgrel=2
+pkgver=r59.7ed29d7
+pkgrel=1
 pkgdesc="Ratakor's build of dwmblocks"
 arch=('x86_64')
 url="https://github.com/ratakor/$_pkgname"
