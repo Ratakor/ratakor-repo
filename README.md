@@ -1,12 +1,9 @@
 # Ratakor Arch repository
 
-Last updated: Wed, 17 May 2023 23:54:06 +0200
+Last updated: Sun, 11 Jun 2023 18:14:08 +0200
 
 ## Setup
-```
-$ curl https://raw.githubusercontent.com/Ratakor/ratakor-repo/master/setup
-# ./setup
-```
+    curl -s https://git.ratakor.com/ratakor-repo.git/plain/setup | sudo sh
 
 or add this to your pacman.conf
 ```

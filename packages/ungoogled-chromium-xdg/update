@@ -4,6 +4,6 @@ pkgver=$(curl -s "https://raw.githubusercontent.com/ungoogled-software/ungoogled
 
 sed -i "s/^pkgver.*/pkgver=$pkgver/" PKGBUILD
 
-git clone https://github.com/archlinux/svntogit-packages.git --branch packages/chromium --single-branch chr
-mv -f chr/trunk/*.patch .
-rm -rf chr
+git clone https://gitlab.archlinux.org/archlinux/packaging/packages/chromium
+mv -f chromium/*.patch .
+rm -rf chromium
