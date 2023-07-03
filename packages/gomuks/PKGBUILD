@@ -1,9 +1,9 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=gomuks
-pkgver=0.3.0.r9.g373139c
+pkgver=0.3.0.r10.ge7ebb97
 pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
-pkgrel=3
+pkgrel=1
 pkgdesc="A terminal based Matrix client written in Go"
 arch=('x86_64')
 url="https://github.com/tulir/$pkgname"

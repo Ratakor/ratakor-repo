@@ -3,7 +3,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=your-privacy
-pkgver=20230514
+pkgver=20230624
 pkgver() { date '+%Y%m%d'; }
 pkgrel=1
 pkgdesc="This package will remove support for protocols and services known to endanger privacy."

@@ -2,8 +2,8 @@
 
 pkgname=gruvbox-gtk-theme
 _pkgname=Gruvbox-GTK-Theme
-pkgver=r46.44e81d82
-pkgrel=2
+pkgver=r50.c7a85272
+pkgrel=1
 pkgdesc="A GTK theme based on the Gruvbox colour palette"
 arch=(any)
 url="https://github.com/Fausto-Korpsvart/$_pkgname"
@@ -11,7 +11,7 @@ license=('GPL3')
 depends=('gtk-engine-murrine')
 provides=("$pkgname")
 conflicts=("$pkgname")
-source=("git+$url")
+source=("git+$url#commit=c7a8527")
 sha256sums=('SKIP')
 
 pkgver() {
