@@ -1,0 +1,28 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=sb
+pkgver=r1.5c55e32
+pkgrel=1
+pkgdesc="statusbar for dwm"
+arch=('x86_64')
+url="https://github.com/ratakor/$pkgname"
+license=('ISC')
+depends=('libx11' 'libconfig')
+optdepends=('dwm: window manager')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	printf 'r%s.%s' \
+		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+	cd "$srcdir/$pkgname"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+	make DESTDIR="$pkgdir" PREFIX="/usr" install
+}
