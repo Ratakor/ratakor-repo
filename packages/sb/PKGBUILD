@@ -1,7 +1,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=sb
-pkgver=r1.5c55e32
+pkgver=r2.01a944a
 pkgrel=1
 pkgdesc="statusbar for dwm"
 arch=('x86_64')

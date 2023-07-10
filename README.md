@@ -1,6 +1,6 @@
 # Ratakor Arch repository
 
-Last updated: Sat, 08 Jul 2023 21:34:53 +0200
+Last updated: Mon, 10 Jul 2023 21:39:10 +0200
 
 ## Setup
     curl -s https://git.ratakor.com/ratakor-repo.git/plain/setup | sudo sh
