@@ -3,13 +3,13 @@
 pkgname=dwm-ratakor
 _pkgname="${pkgname%-ratakor}"
 pkgver=r50.4802e2a
-pkgrel=1
+pkgrel=2
 pkgdesc="Ratakor's build of dwm"
 arch=('x86_64')
 url="https://github.com/ratakor/$_pkgname"
 license=('MIT')
 depends=('libx11' 'libxft' 'libxinerama' 'freetype2' 'dmenu')
-optdepends=('dwmblocks-ratakor: status bar'
+optdepends=('sb: status bar'
             'st-ratakor: terminal emulator'
             # 'dmenu-ratakor: application launcher'
             'picom: compositor for transparency'
