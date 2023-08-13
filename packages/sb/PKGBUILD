@@ -1,13 +1,13 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=sb
-pkgver=r2.01a944a
+pkgver=r8.cb719f6
 pkgrel=1
 pkgdesc="statusbar for dwm"
 arch=('x86_64')
 url="https://github.com/ratakor/$pkgname"
 license=('ISC')
-depends=('libx11' 'libconfig')
+depends=('libx11')
 optdepends=('dwm: window manager')
 provides=("$pkgname")
 conflicts=("$pkgname")

@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = gcc
+
+[Action]
+Description = Re-pointing /bin/cc symlink to tcc...
+When = PostTransaction
+Exec = /usr/bin/ln -sfT tcc /usr/bin/cc
+Depends = tcc

@@ -1,0 +1,18 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=tccbincc
+pkgver=0.1
+pkgrel=1
+pkgdesc="Relink /bin/cc to tcc"
+arch=('any')
+license=('GPL')
+depends=('tcc')
+provides=('cc')
+install="${pkgname}.install"
+source=("${pkgname}.hook")
+sha256sums=('436a81c276f5856e30336e36f284e25be87805478d3df7de88a0ad3a2649a9c3')
+
+package() {
+	cd "$srcdir"
+	install -Dm644 "${pkgname}.hook" "${pkgdir}/usr/share/libalpm/hooks/${pkgname}.hook"
+}
