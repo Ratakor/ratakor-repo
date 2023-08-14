@@ -1,0 +1,27 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname=poop
+pkgver=0.4.0.r4.g281428f
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc="Performance Optimizer Observation Platform"
+arch=('x86_64')
+url="https://github.com/andrewrk/$pkgname"
+license=('MIT')
+makedepends=('git' 'zig')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url")
+sha256sums=('SKIP')
+
+build() {
+	cd "$srcdir/$pkgname"
+	zig build -Doptimize=ReleaseFast
+}
+
+package() {
+	cd "$srcdir/$pkgname"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+	install -Dm755 "zig-out/bin/$pkgname" "$pkgdir/usr/bin/$pkgname"
+}
