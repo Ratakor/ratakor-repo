@@ -251,8 +251,8 @@ index 51d3990..22151be 100644
  }
  
 +
-+void exitSuccess(void) {
-+       exit(0);
++void exitSuccess(int unused) {
++	exit(0);
 +}
 +
  int main(int argc, char *argv[])

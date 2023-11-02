@@ -1,7 +1,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=simple-mtpfs
-pkgver=0.4.0
+pkgver=0.4.0.r2.g5dfd25c
 pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
 pkgrel=1
 pkgdesc='Simple MTP fuse filesystem driver'

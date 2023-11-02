@@ -13,7 +13,7 @@ provides=("$pkgname" "libnotify")
 conflicts=("$pkgname" "libnotify")
 source=("git+$url" "herbe.diff")
 sha256sums=('SKIP'
-            '239652895a28364c61b695dc1e5ce9a4074ca4e421aec6fb59332f33f41bdc95')
+            'bb3f312d21df456cff2747ebafca449c967ac068c8f95eb051d99441e8bf7878')
 
 prepare() {
 	cd "$srcdir/$pkgname"

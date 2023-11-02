@@ -1,7 +1,8 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=sb
-pkgver=r8.cb719f6
+pkgver=0.1.r2.g062909d
+pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
 pkgrel=1
 pkgdesc="statusbar for dwm"
 arch=('x86_64')
@@ -13,12 +14,6 @@ provides=("$pkgname")
 conflicts=("$pkgname")
 source=("git+$url")
 sha256sums=('SKIP')
-
-pkgver() {
-	cd "$pkgname"
-	printf 'r%s.%s' \
-		"$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
 
 package() {
 	cd "$srcdir/$pkgname"

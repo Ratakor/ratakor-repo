@@ -1,28 +1,22 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=zls
-pkgver=0.11.0.r17.g4c3236b
+pkgver=0.11.0.r216.g7c4056a
 pkgver() { git -C "$pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
 pkgrel=1
 pkgdesc="A language server for Zig"
 arch=('x86_64')
 url="https://github.com/zigtools/$pkgname"
 license=('MIT')
-depends=('zig')
-makedepends=('git')
+makedepends=('git' 'zig')
 provides=("$pkgname")
 conflicts=("$pkgname")
 source=("git+$url")
 sha256sums=('SKIP')
 
-build() {
-	cd "$srcdir/$pkgname"
-	zig build -Doptimize=ReleaseSafe
-}
-
 package() {
 	cd "$srcdir/$pkgname"
+	zig build -Doptimize=ReleaseSafe -p "$pkgdir/usr"
 	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
-	install -Dm755 "zig-out/bin/$pkgname" "$pkgdir/usr/bin/$pkgname"
 }

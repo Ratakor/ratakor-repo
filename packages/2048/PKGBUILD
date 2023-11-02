@@ -1,0 +1,23 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname="2048"
+_pkgname=${pkgname}.zig
+pkgver=0.2.2
+pkgver() { git -C "$_pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc="2048 in zig"
+arch=('x86_64')
+url="https://github.com/ratakor/$_pkgname"
+license=('ISC')
+makedepends=('git' 'zig')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url")
+sha256sums=('SKIP')
+
+package() {
+	cd "$srcdir/$_pkgname"
+	zig build -Doptimize=ReleaseSafe -p "$pkgdir/usr"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

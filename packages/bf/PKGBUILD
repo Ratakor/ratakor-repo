@@ -1,0 +1,24 @@
+# Maintainer: Ratakor <ratakor@disroot.org>
+
+pkgname="bf"
+_pkgname="brainfuck"
+pkgver=0.1.0.r6.g3d16629
+pkgver() { git -C "$_pkgname" describe --tags | sed 's/^v//;s/-/.r/;s/-/./g'; }
+pkgrel=1
+pkgdesc="brainfuck interpreter (bf) and compiler (bfc)"
+arch=('x86_64')
+url="https://github.com/ratakor/$_pkgname"
+license=('ISC')
+depends=('nasm' 'binutils')
+makedepends=('git' 'zig')
+provides=("$pkgname")
+conflicts=("$pkgname")
+source=("git+$url")
+sha256sums=('SKIP')
+
+package() {
+	cd "$srcdir/$_pkgname"
+	zig build -Doptimize=ReleaseSafe -p "$pkgdir/usr"
+	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

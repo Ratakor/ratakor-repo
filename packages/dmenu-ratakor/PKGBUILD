@@ -2,7 +2,7 @@
 
 pkgname=dmenu-ratakor
 _pkgname="${pkgname%-ratakor}"
-pkgver=r18.18b0f51
+pkgver=r19.a510d30
 pkgrel=1
 pkgdesc="Ratakor's build of dmenu"
 arch=('x86_64')

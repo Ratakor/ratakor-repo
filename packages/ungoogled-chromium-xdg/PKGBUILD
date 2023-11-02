@@ -15,10 +15,10 @@
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
 pkgname=ungoogled-chromium-xdg
-pkgver=116.0.5845.82
+pkgver=116.0.5845.111
 pkgrel=1
 _launcher_ver=8
-#_gcc_patchset=2
+_gcc_patchset=116-patchset-2
 _uc_usr=ungoogled-software
 _uc_ver=$pkgver-1
 pkgdesc="A lightweight approach to removing Google web service dependency - without creating a useless ~/.pki directory"
@@ -42,16 +42,17 @@ options=('!lto') # Chromium adds its own flags for ThinLTO
 source=(https://commondatastorage.googleapis.com/chromium-browser-official/chromium-$pkgver.tar.xz
         ${pkgname%-*}-$_uc_ver.tar.gz::https://github.com/$_uc_usr/ungoogled-chromium/archive/$_uc_ver.tar.gz
         https://github.com/foutrelis/chromium-launcher/archive/v$_launcher_ver/chromium-launcher-$_launcher_ver.tar.gz
-        #https://github.com/stha09/chromium-patches/releases/download/chromium-${pkgver%%.*}-patchset-$_gcc_patchset/chromium-${pkgver%%.*}-patchset-$_gcc_patchset.tar.xz
+        https://github.com/stha09/chromium-patches/releases/download/chromium-$_gcc_patchset/chromium-$_gcc_patchset.tar.xz
         chromium-drirc-disable-10bpc-color-configs.conf
         use-oauth2-client-switches-as-default.patch
         REVERT-disable-autoupgrading-debug-info.patch
         random-build-fixes.patch
         xdg-basedir.patch
         no-omnibox-suggestion-autocomplete.patch)
-sha256sums=('6da04e232fcb3ebffdd4354c4ae382df24db0ddd6cf29eaaa4ed905ae84b47d3'
-            '60d03a255289e70ee2f2448520dac80343a0d2ab6054ebdf220deaf4092c89cd'
+sha256sums=('a0b2546af8055a87ab00e40a593d63357d67b7cab4897a6c04d649857f53babe'
+            '1b4639633efc4e688ddbee17ae49c6bf04ee0701aeddae3fcc19245a9f68def7'
             '213e50f48b67feb4441078d50b0fd431df34323be15be97c55302d3fdac4483a'
+            '25ad7c1a5e0b7332f80ed15ccf07d7e871d8ffb4af64df7c8fef325a527859b0'
             'babda4f5c1179825797496898d77334ac067149cac03d797ab27ac69671a7feb'
             'e393174d7695d0bafed69e868c5fbfecf07aa6969f3b64596d0bae8b067e1711'
             '1b782b0f6d4f645e4e0daa8a4852d63f0c972aa0473319216ff04613a0592a69'
@@ -62,7 +63,7 @@ sha256sums=('6da04e232fcb3ebffdd4354c4ae382df24db0ddd6cf29eaaa4ed905ae84b47d3'
 # Possible replacements are listed in build/linux/unbundle/replace_gn_files.py
 # Keys are the names in the above script; values are the dependencies in Arch
 declare -gA _system_libs=(
-  [brotli]=brotli
+  #[brotli]=brotli
   [dav1d]=dav1d
   [ffmpeg]=ffmpeg
   [flac]=flac
@@ -119,12 +120,10 @@ prepare() {
   patch -Np1 -i ../random-build-fixes.patch
 
   # Fixes for building with libstdc++ instead of libc++
-  #patch -Np1 -i ../patches/chromium-114-ruy-include.patch
-  #patch -Np1 -i ../patches/chromium-114-tflite-include.patch
-  #patch -Np1 -i ../patches/chromium-114-vk_mem_alloc-include.patch
-  #patch -Np1 -i ../patches/chromium-115-skia-include.patch
-  #patch -Np1 -i ../patches/chromium-114-maldoca-include.patch
-  #patch -Np1 -i ../patches/chromium-115-verify_name_match-include.patch
+  patch -Np1 -i ../patches/chromium-114-maldoca-include.patch
+  patch -Np1 -i ../patches/chromium-115-verify_name_match-include.patch
+  patch -Np1 -i ../patches/chromium-116-object_paint_properties_sparse-include.patch
+  patch -Np1 -i ../patches/chromium-116-profile_view_utils-include.patch
 
   # move ~/.pki directory to ${XDG_DATA_HOME:-$HOME/.local}/share/pki
   patch -p1 -i ../xdg-basedir.patch
@@ -218,7 +217,7 @@ build() {
     'rtc_use_pipewire=true'
     'link_pulseaudio=true'
     'use_custom_libcxx=false'
-    'use_gnome_keyring=false' # deprecated by libsecret
+    #'use_gnome_keyring=false' # deprecated by libsecret
     'use_sysroot=false'
     'use_system_libffi=true'
     #"google_api_key=\" AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM\""

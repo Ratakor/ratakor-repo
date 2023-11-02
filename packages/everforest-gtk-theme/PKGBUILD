@@ -1,7 +1,7 @@
 # Maintainer: Ratakor <ratakor@disroot.org>
 
 pkgname=everforest-gtk-theme
-pkgver=r21.33162c5
+pkgver=r37.671ad11
 pkgrel=1
 pkgdesc="Everforest theme for GTK"
 arch=("any")

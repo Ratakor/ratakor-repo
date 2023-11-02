@@ -14,7 +14,7 @@ provides=("$_pkgname" "libnotify")
 conflicts=("$_pkgname" "libnotify")
 source=("git+$url" "herbe-xrandr.diff")
 sha256sums=('SKIP'
-            '1c0127d828d4a2b954cbedc635766f7e3cefd4651997046c4f4be2d082bbb354')
+            '5f0253c6dfe60304f0f96475b6da6e74e56d8df327ba436342ef1f2486ac6e97')
 
 prepare() {
 	cd "$srcdir/$_pkgname"

@@ -1,6 +1,6 @@
 # Ratakor Arch repository
 
-Last updated: Mon, 14 Aug 2023 13:47:40 +0200
+Last updated: Thu, 02 Nov 2023 16:27:37 +0100
 
 ## Setup
     curl -s https://git.ratakor.com/ratakor-repo.git/plain/setup | sudo sh
@@ -27,3 +27,7 @@ LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now -flto"
 ```
 $ pacman -Sl ratakor-repo
 ```
+
+## TODO
+- update openssh-dotlocal
+- update ungoogled-chromium-xdg

@@ -33,7 +33,7 @@ if pacman -Qqdt 1>/dev/null; then
 	"$ROOTCMD" pacman -Rns $(pacman -Qqdt)
 fi
 
-gitui # review changes
+gitui --polling # review changes
 
 printf "Do you want to push ? (y/N) "
 read -r ANSWER
@@ -42,10 +42,10 @@ case $ANSWER in
 		git add .
 		git commit -m "update"
 		git push
-		rm -f ../ratakor-repo-github/x86_64/*.pkg.tar.zst
-		cp -rf ./* ../ratakor-repo-github/
-		(cd ../ratakor-repo-github || exit 1
-			git add .
-			git commit -m "update"
-			git push) ;;
+		# rm -f ../ratakor-repo-github/x86_64/*.pkg.tar.zst
+		# cp -rf ./* ../ratakor-repo-github/
+		# (cd ../ratakor-repo-github || exit 1
+		# 	git add .
+		# 	git commit -m "update"
+		# 	git push) ;;
 esac
